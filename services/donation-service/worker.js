@@ -14,8 +14,8 @@ async function startWorker() {
             if (msg !== null) {
                 const data = JSON.parse(msg.content.toString());
                 
-                // memproses notifikasi (misal: kirim email)
-                console.log(`[v] MENGIRIM NOTIFIKASI: Terima kasih User ID ${data.userId} atas donasi Rp${data.nominal}!`);
+                // memproses notifikasi
+                console.log(`[v] Mengirim Notifikasi: Terima kasih Saudara/i ${data.userName} (ID: ${data.userId}) atas donasi Rp${data.nominal}!`);
                 
                 channel.ack(msg);
             }
