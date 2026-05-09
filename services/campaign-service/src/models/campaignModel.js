@@ -14,7 +14,7 @@ const create = async (judul, deskripsi, target_dana) => {
 };
 
 const update = async (id, data) => {
-    const { judul, deskripsi, target_dana, status } = data;
+    const { judul = null, deskripsi = null, target_dana = null, status = null } = data;
     await db.execute(
         `UPDATE campaigns SET 
         judul = COALESCE(?, judul), 
