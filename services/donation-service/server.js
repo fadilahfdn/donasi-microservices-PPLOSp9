@@ -1,7 +1,7 @@
 const express = require('express');
 const amqp = require('amqplib');
 const db = require('./db');
-const { verifyToken } = require('../campaign-service/authMiddleware');
+const { verifyToken } = require('../campaign-service/src/middlewares/authMiddleware');
 require('dotenv').config();
 
 const app = express();
