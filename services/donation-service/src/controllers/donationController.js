@@ -5,6 +5,7 @@ const create = async (req, res) => {
        
         const donationData = {
             userId: req.user.id,
+            userName: req.user.nama,
             campaignId: req.body.campaign_id,
             nominal: req.body.nominal,
             pesan: req.body.pesan_dukungan

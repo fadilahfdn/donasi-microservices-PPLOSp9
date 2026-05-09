@@ -19,7 +19,7 @@ const loginUser = async (email, password) => {
     if (!isMatch) throw new Error('Email atau password salah!');
 
     const token = jwt.sign(
-        { id: user.id, role: user.role },
+        { id: user.id, nama: user.nama, role: user.role },
         process.env.JWT_SECRET,
         { expiresIn: '1d' }
     );
