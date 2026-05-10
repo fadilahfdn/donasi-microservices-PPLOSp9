@@ -62,7 +62,8 @@ node services/donation-service/worker.js
 
 #### 1. Mendaftarkan akun
 * Endpoint: `POST /auth/register`
-* Request Body:
+
+Request Body:
   ```json
   {
     "nama": "Budi Dermawan",
@@ -71,7 +72,8 @@ node services/donation-service/worker.js
     "role": "donatur"
   }
 
-* Response (201 Created):
+
+Response (201 Created):
 ```json
 {
   "message": "Registrasi berhasil!",
@@ -80,13 +82,15 @@ node services/donation-service/worker.js
 ```
 #### 2. Login dan Mendapatkaan token
 * Endpoint: POST /auth/login
-* Request Body:
+
+Request Body:
 ```json
 {
   "email": "budi.dermawan@contoh.com",
   "password": "rahasia_budi_123"
 }
 ```
+
 Response (200 OK):
 ```json
 {
@@ -100,7 +104,8 @@ Response (200 OK):
 ```
 #### 3. Menampilkan Semua Program Donasi
 * Endpoint: GET /campaigns
-* Response (200 OK):
+
+Response (200 OK):
 ```json
 [
   {
@@ -127,6 +132,8 @@ Response (200 OK):
 #### 4. Membuat program baru (Admin)
 * Endpoint: POST /campaigns
 * Headers: Authorization: Bearer <token_jwt_admin>
+
+Request:
 ```json
 {
   "judul": "Bantuan Pembangunan Sekolah Terpencil",
@@ -135,7 +142,7 @@ Response (200 OK):
 }
 ```
 
-* Response (201 Created):
+Response (201 Created):
 ```json
 {
   "message": "Kampanye berhasil dibuat",
@@ -146,7 +153,8 @@ Response (200 OK):
 #### 5. Memperbarui Program (Admin / Partial Update)
 * Endpoint: PUT /campaigns/:id (contoh: /campaigns/1)
 * Headers: Authorization: Bearer <token_jwt_admin>
-* Request Body:
+
+Request Body:
 ```json
 {
   "target_dana": 200000000,
@@ -154,7 +162,7 @@ Response (200 OK):
 }
 ```
 
-* Response (200 OK):
+Response (200 OK):
 ```json
 {
   "message": "Program berhasil diperbarui"
@@ -164,7 +172,8 @@ Response (200 OK):
 #### 6. Menghapus Program (Admin)
 * Endpoint: DELETE /campaigns/:id (contoh: /campaigns/1)
 * Headers: Authorization: Bearer <token_jwt_admin>
-* Response (200 OK):
+
+Response (200 OK):
 ```json
 {
   "message": "Program berhasil dihapus"
@@ -174,7 +183,8 @@ Response (200 OK):
 #### 7. Melakukan Donasi
 * Endpoint: POST /donations
 * Headers: Authorization: Bearer <token_jwt_donatur>
-* Request Body:
+
+Request Body:
 ```json
 {
   "campaign_id": 1,
@@ -182,7 +192,8 @@ Response (200 OK):
   "pesan_dukungan": "Semoga bermanfaat untuk penerima ya"
 }
 ```
-* Response (201 Created):
+
+Response (201 Created):
 ```json
 {
   "message": "Donasi berhasil! Notifikasi sedang diproses.",
