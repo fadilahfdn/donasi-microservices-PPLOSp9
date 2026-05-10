@@ -6,7 +6,7 @@ const rateLimit = require('express-rate-limit');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const app = express();
-const PORT = 3000;
+const PORT = 3330;
 
 // Middleware keamanan dasar
 app.use(helmet());
@@ -24,17 +24,17 @@ const limiter = rateLimit({
 app.use(limiter);
 
 app.use('/auth', createProxyMiddleware({ 
-    target: 'http://localhost:3001', 
+    target: 'http://localhost:3331', 
     changeOrigin: true 
 }));
 
 app.use('/campaigns', createProxyMiddleware({ 
-    target: 'http://localhost:3002', 
+    target: 'http://localhost:3332', 
     changeOrigin: true 
 }));
 
 app.use('/donations', createProxyMiddleware({ 
-    target: 'http://localhost:3003', 
+    target: 'http://localhost:3333', 
     changeOrigin: true 
 }));
 
