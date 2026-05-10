@@ -71,7 +71,7 @@ Request Body:
     "password": "rahasia_budi_123",
     "role": "donatur"
   }
-
+```
 
 Response (201 Created):
 ```json
