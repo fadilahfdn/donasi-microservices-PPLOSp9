@@ -71,6 +71,7 @@ Request Body:
     "password": "rahasia_budi_123",
     "role": "donatur"
   }
+```
 
 Response (201 Created):
 ```json
@@ -160,7 +161,7 @@ Request Body:
 }
 ```
 
-* Response (200 OK):
+Response (200 OK):
 ```json
 {
   "message": "Program berhasil diperbarui"
