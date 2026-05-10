@@ -13,6 +13,7 @@ services:
       - "3306:3306" # Buka port ini jika ingin melihat isinya lewat DBeaver/HeidiSQL dari laptop
     volumes:
       - db_data:/var/lib/mysql # Agar data tidak hilang saat server di-restart
+      - ./init-db:/docker-entrypoint-initdb.d
 
   # API GATEWAY
   gateway:
