@@ -8,7 +8,7 @@ app.use(express.json());
 // semua rute autentikasi di authRoutes
 app.use('/', authRoutes);
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3331;
 app.listen(PORT, () => {
     console.log(`Auth Service berjalan di http://localhost:${PORT}`);
 });
