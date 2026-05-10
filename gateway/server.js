@@ -24,17 +24,17 @@ const limiter = rateLimit({
 app.use(limiter);
 
 app.use('/auth', createProxyMiddleware({ 
-    target: 'http://localhost:3331', 
+    target: 'http://auth:3331', 
     changeOrigin: true 
 }));
 
 app.use('/campaigns', createProxyMiddleware({ 
-    target: 'http://localhost:3332', 
+    target: 'http://campaign:3332', 
     changeOrigin: true 
 }));
 
 app.use('/donations', createProxyMiddleware({ 
-    target: 'http://localhost:3333', 
+    target: 'http://donation:3333', 
     changeOrigin: true 
 }));
 
