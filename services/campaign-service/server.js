@@ -8,7 +8,7 @@ app.use(express.json());
 // sambungkan rute utama
 app.use('/', campaignRoutes);
 
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 3332;
 app.listen(PORT, () => {
     console.log(`Campaign Service berjalan di port ${PORT}`);
 });

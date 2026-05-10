@@ -11,7 +11,7 @@ connectRabbitMQ();
 // rute donasi
 app.use('/', donationRoutes);
 
-const PORT = process.env.PORT || 3003;
+const PORT = process.env.PORT || 3333;
 app.listen(PORT, () => {
     console.log(`Donation Service berjalan di port ${PORT}`);
 });
