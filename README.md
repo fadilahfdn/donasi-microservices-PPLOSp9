@@ -3,50 +3,40 @@
 ## Arsitektur Sistem
 <br> Proyek  ini terdiri dari beberapa layanan independen yang berkomunikasi melalui API Gateway dan Message Broker:
 
-1. API Gateway (Port 3000): Single entry point of Entry untuk semua *request* dari klien. Dilengkapi dengan *logging* otomatis.
-2. Auth Service (Port 3001): Mengelola autentikasi pengguna, registrasi, dan penerbitan JSON Web Token (JWT).
-3. Campaign Service (Port 3002): Mengelola operasi CRUD untuk entitas program donasi. Mendukung *Partial Updates* dan dibatasi dengan otorisasi berbasis peran (RBAC).
-4. Donation Service (Port 3003): Menangani logika transaksi masuk
+1. API Gateway (Port 3330): Single entry point of Entry untuk semua *request* dari klien. Dilengkapi dengan *logging* otomatis.
+2. Auth Service: Mengelola autentikasi pengguna, registrasi, dan penerbitan JSON Web Token (JWT).
+3. Campaign Service: Mengelola operasi CRUD untuk entitas program donasi. Mendukung *Partial Updates* dan dibatasi dengan otorisasi berbasis peran (RBAC).
+4. Donation Service: Menangani logika transaksi masuk
 5. Worker / Notifikasi: Bertindak sebagai consumer asinkron untuk memproses antrean pesan donasi dari RabbitMQ
+6. Database MariaDB (Port 3336): Pangkalan data terisolasi di dalam *container*.
 
 ## Teknologi yang digunakan
 - Backend: Node.js Express.js
 - Database: MariaDB (modul 'mysql2')
 - Message Broker: RabbitMQ
 - Keamanan: JWT, bcryptjs
+- Deployment & Infrastruktur: Docker, Docker Compose
 
 ## Panduan instalasi dan eksekusi
-<br> Pastikan sistem sudah terinstal Node.js, MariaDB, dan RabbitMQ
+<br> Pastikan sistem sudah terinstal Docker dan Docker Compose
 
 ### 1. Persiapan Environment
-<br>Buat file `.env` pada masing-masing folder layanan (Gateway, Auth, Campaign, Donation) dengan variabel yang sesuai, seperti:  
-```env
-PORT=300x
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=password_anda
-DB_NAME=nama_database_layanan
-JWT_SECRET=rahasia_super_kuat
-RABBITMQ_URL=amqp://localhost
-```
+<br>Semua konfigurasi environment (seperti koneksi database dan port) sudah diatur secara otomatis di dalam file `docker-compose.yml`. Pangkalan data juga akan diinisialisasi secara otomatis melalui file SQL di dalam folder `init-db`.
 
 ### 2. Menjalankan Layanan
-<br> Karena ini adalah microservices, setiap layanan harus dijalankan di terminal yang terpisah. Buka 5 terminal dan jalankan perintah berikut secara berurutan dari root folder proyek:
+<br> Karena sistem ini sudah menggunakan arsitektur kontainer, tidak perlu lagi membuka 5 terminal terpisah. Buka terminal di *root* folder proyek dan jalankan perintah berikut:
 
-- Terminal 1(API Gateway):  
-node gateway/server.js
-- Terminal 2(Auth Service)  
-node services/auth-service/server.js
-- Terminal 3(Campaign Service):  
-node services/campaign-service/server.js
-- Terminal 4(Donation Service):  
-node services/donation-service/server.js
-- Terminal 5(RabbitMQ Worker):  
-node services/donation-service/worker.js
+```bash
+# Menjalankan semua layanan di latar belakang
+docker-compose up -d --build
+```
+
+Untuk menghentikan semua layanan, jalankan perintah:
+```bash
+docker-compose down
+```
 
 ## Dokumentasi API (Endpoint)
-
-*Catatan: Semua request wajib diarahkan ke **API Gateway** melalui `http://localhost:3000`.*
 
 | Layanan | Method | Endpoint | Otorisasi | Body / Payload | Deskripsi |
 | :--- | :--- | :--- | :--- | :--- | :--- |
